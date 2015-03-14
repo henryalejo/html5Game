@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="logic" >
+  <head>
+    <!-- Pull the engine from the Quintus CDN or load it locally -->
+    <!-- (use quintus-all.min.js for production) -->
+    <!--
+    <script src='http://cdn.html5quintus.com/v0.2.0/quintus-all.js'></script>
+    -->
+    <script src='../js/quintus-all.js'></script>
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="bower_components/angular-ui-bootstrap/ui-bootstrap-tpls-0.11.2.min.js"></script>
+    <script type="text/javascript" src="js/angularquintus.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <title>Play</title>
+  </head>
+   <body class="container" ng-controller="GameLogicController">
+    <div >
+    
+    </div>
+    
+    <!--
+     <angular-Quintus></angular-Quintus>
+       <ng-view></ng-view>
+    -->
+   
+    <h1><label class="label label-default">Score: {{score}}</label></h1>
+<canvas id='myGame' width='500' height='500'></canvas>
+
+<h1><label class="label label-default">Lives: <i style="color: red"ng-repeat="live in lives  track by $index" class="fa fa-heartbeat" > </i></label></h1>
+    
+
+
+   </body>
+</html>
