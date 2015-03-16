@@ -21,23 +21,36 @@
     $scope.myfactory.setProviders();
 		$scope.levelnumber=1;
 		$scope.lives= new Array(3);
-    $scope.maxlevels=1;
-     $scope.miarray= [
+    $scope.maxlevels=4;
+    $scope.players=[];
+    $http.get('http://localhost:3000/api/players').success(function(data) {
+                  console.log('Succes get players'); 
+                  console.log(data);
+                  $scope.players=data;
+                });
+    //console.log($scope.players);
+    $scope.miarray= 
+[
+[ 1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+[ 1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+[ 1,1,0,0,0,1,0,1,0,0,0,0,0,1,1,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,1],
+[ 1,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,1],
+[ 1,1,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+[ 1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+[ 1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
+[ 1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1],
+[ 1,1,0,0,0,1,0,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,0,0,0,0,0,1,0,1],
 [ 1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-[ 1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-[ 1,0,0,0,1,1,1,0,0,1,0,0,0,0,2,0,0,0,2,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1],
-[ 1,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
-[ 1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1],
-[ 1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1],
-[ 1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,1,1],
-[ 1,0,0,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,2,1,1],
-[ 1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
-[ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1],
-[ 1,0,0,1,0,1,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,1,1,1,1,1,1],
-[ 1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,1,1,1,1],
-[ 1,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,1,1,1,1],
+[ 1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+[ 1,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,1],
+[ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,1],
 [ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
   ];
+  $scope.test={
+    "name": "level4",
+  "player": {"x":1150, "y":10},
+  "tower": {"x":100, "y": 10},
+  "enemy": {"x":50, "y": 90}};
 
 
 		$scope.plusScore = function(score){
@@ -127,7 +140,7 @@
             if(collision.obj.isA("Player")) { 
               this.destroy();
               collision.obj.p.vy = -300;
-              $scope.plusScore(1);
+              $scope.plusScore(25);
              
 
             }
@@ -220,19 +233,22 @@
           
          //With angular we recicle the load function for each level 
         $scope.load = function(level){
+          //level.enemy=$scope.test.enemy;
+          //level.tower=$scope.test.tower;
+          //level.player=$scope.test.player
 
           Q.scene("level1",function(stage) {
             stage.collisionLayer(new Q.TileLayer({ dataAsset: 'level.json' , sheet: 'tiles' }));
 
-            var player = stage.insert(new Q.Player({x:level.player[0], y:level.player[1]} ));
+            var player = stage.insert(new Q.Player(level.player));
             stage.add("viewport").follow(player);
             //los de el api
-            stage.insert(new Q.Enemy({ x: level.enemy[0], y: level.enemy[1] }));
-            stage.insert(new Q.Enemy({ x: level.enemy[0]+100, y: level.enemy[1] }));
+            stage.insert(new Q.Enemy(level.enemy));
+            stage.insert(new Q.Enemy({ x: level.enemy.x +100, y: level.enemy.y }));
             ////
             stage.insert(new Q.Enemy({ x: 700, y: 0 }));
             stage.insert(new Q.Enemy({ x: 800, y: 0 }));        
-            stage.insert(new Q.Tower({ x: level.tower[0], y: level.tower[1] }));
+            stage.insert(new Q.Tower(level.tower));
           });
 
           Q.load(['../images/sprites.png', '../data/sprites.json','../images/tiles.png'], function() {      
@@ -307,22 +323,19 @@
 */    
 //fin del controller
 app.controller('ModalAddScore', function ($scope,scoredom, $modalInstance,$filter,$http) {
-            $scope.score=scoredom;
-           
+            $scope.score=scoredom;          
            
          
         $scope.ok = function () {
-            ////console.log('entra ok');
+              
             var data = {
                     name: $filter('limitTo')($scope.player.name, 20),
                     score:$scope.score
                               
             };
                 $http.post('http://localhost:3000/api/players',data).success(function(data, status) {
-                console.log('Succes post'); 
-                $scope.cancel();
-                //$route.reload();
-               // $scope.exito=true;
+                  console.log('Succes post'); 
+                  $scope.cancel();
                 });
             
         };
