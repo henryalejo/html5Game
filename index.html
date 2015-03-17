@@ -62,6 +62,22 @@
 						<h1> 
 					      Score: {{score}}
 					    </h1>
+					    <button class="btn btn-default" ng-click="stopMusic()" ng-show="sound">
+							<span class="fa-stack ">
+							  <i class="fa fa-volume-up "></i>
+							  <i class="fa fa-ban fa-stack-1x text-danger"></i>
+						</span>
+
+
+					    </button>
+					    <button class="btn btn-default" ng-click="stopMusic()" ng-show="!sound">
+							
+							  <i class="fa fa-volume-up"></i>
+							  
+						
+
+
+					    </button>
 				</div><!-- /col-lg-6 -->
 				<div class="col-lg-5">
 					 <canvas id='myGame' width='490' height='490' style='background-color: white' ></canvas>
