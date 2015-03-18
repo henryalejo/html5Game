@@ -29,7 +29,7 @@
     $scope.sound=true;
     $http.get(API_URL+'players').success(function(data) {
                   console.log('Succes get players'); 
-                  console.log(data);
+                  //console.log(data);
                   $scope.players=data;
                 });
     //console.log($scope.players);
@@ -170,7 +170,7 @@
                                               label: "Score: "+$scope.score }));
         button.on("click",function() {
           
-          $scope.modalScore($scope.score);          
+          $scope.modalScore($scope.score,$scope.players);          
           $scope.score=0;            
           $scope.levelnumber=1;
           $scope.lives= new Array(3);
@@ -270,17 +270,21 @@
           });
         };
 
-        $scope.modalScore = function (score) {
+        $scope.modalScore = function (score,players) {
           ////console.log('entro a edit modal siganture');
           $scope.score2=score;
+          $scope.players2=players;
           var modalInstance = $modal.open({
               templateUrl: 'tpl/addscore.html',
               controller: 'ModalAddScore',
               size: 'sm'
               ,
               resolve: {
-                    scoredom: function () {
+                  scoredom: function () {
                   return $scope.score2;
+                },
+                  players: function () {
+                  return $scope.players2;
                 }
               }
           });   
@@ -336,8 +340,9 @@
 	});  
 */    
 //fin del controller
-app.controller('ModalAddScore', function ($scope,scoredom, $modalInstance,$filter,$http,API_URL) {
-            $scope.score=scoredom;          
+app.controller('ModalAddScore', function ($scope,scoredom, $modalInstance,$filter,$http,API_URL, players) {
+            $scope.score=scoredom;
+            $scope.domplayers=players;          
            
          
         $scope.ok = function () {
@@ -347,11 +352,18 @@ app.controller('ModalAddScore', function ($scope,scoredom, $modalInstance,$filte
                     score:$scope.score
                               
             };
-                $http.post(API_URL+'players',data).success(function(data, status) {
+                $http.post(API_URL+'players',data).success(function() {
                   console.log('success post'); 
-                  $scope.cancel();
+                  $scope.domplayers=$http.get(API_URL+'players').then(function(data) {
+                    //console.log('Succes get players'); 
+                   
+                    return data.data;
+                     //console.log($scope.domplayers);
+                    
                 });
-            
+                 $scope.$apply();
+                });
+             $scope.cancel();
         };
     
         $scope.cancel = function () {
