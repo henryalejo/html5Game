@@ -1,4 +1,4 @@
-# Html5 Game  made with Quintus and  Angular js
+# Html5 Game  made with Angular and Quintus js
 HTML5 Game made with Quintus js integrated in  Angular js check out quintus at https://github.com/cykod/Quintus
 
 The game code was downloaded from quintus web page http://www.html5quintus.com/ , and It was modifided to work with angular.js, for this project I use angular.js because I need to do some API request like GET and POST, with GET I pull the levels array and with the POST I store the scores.
